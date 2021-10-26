@@ -1,4 +1,57 @@
 <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+
+
+function isTouchDevice() {
+  return (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0));
+}
+
+
+function ScrollRemove() {
+
+/*alert(isTouchDevice());*/
+document.getElementsByClassName("tablinks")[0].click();
+
+if (isTouchDevice()) {
+document.getElementById('ALeft').style.visibility = 'hidden';
+document.getElementById('ARight').style.visibility = 'hidden';
+} else {
+
+var style = document.createElement('style');
+style.innerHTML = `
+
+.arrow-right {
+  float:right;
+  width: 0;
+  height: 0; 
+  border-top: 37px solid transparent;
+  border-bottom: 37px solid transparent;
+  border-left: 70px solid grey; 
+}
+.arrow-left {
+  float:left;
+  border-top: 37px solid transparent;
+  border-bottom: 37px solid transparent; 
+  border-right:70px solid grey; 
+}
+  `;
+document.head.appendChild(style);
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
 var newwindow
 function popitup(url , title) {
 if (newwindow && !newwindow.closed)
@@ -11,16 +64,139 @@ newwindow.document.writeln('<\/center> <\/body> <\/html>');
 newwindow.document.close();
 }
 
+
+
+
+
+
+
+
+
+
 function tidy()
 {
 if (newwindow && !newwindow.closed) { newwindow.close(); }
 }
+
+function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+
+  return false;  }
+
+function moveNavigation(byX) {
+  var navigation = document.getElementsByClassName("tab")[0];
+  navigation.scrollLeft = navigation.scrollLeft + byX;
+  }
+
+function popup(mylink, windowname) { if (! window.focus)return true; var href;
+if (typeof(mylink) == 'string') href=mylink; else href=mylink.href;
+window.open(href, windowname, 'width=400,height=800,scrollbars=yes'); return false; }
+
+window.onload = ScrollRemove;
+
 </script>
 
+
+
+
+<Style>
+    .tab-navigation {
+  border: 1px solid solid gray;
+}
+/* Style the tab */
+
+/* To Hide Scrollbar in Desktop PC */
+.tab::-webkit-scrollbar { 
+  display: none; 
+}
+
+
+    .tab .imgcss{  
+        animation:scroll 6s linear 0s infinite;  
+    } 
+    .tab .textcss {
+        animation:textScroll 6s linear 0s infinite;  
+    }
+
+
+.tab {
+    overflow-x: Auto;
+    background-color: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    white-space: nowrap;
+    border:solid 0px solid gray;
+    text-align:center;}
+/* Style the buttons that are used to open the tab content */
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+  background-color: #ddd;
+}
+/* Create an active/current tablink class */
+
+.tab button.active {
+  background-color: #ccc;
+}
+/* Style the tab content */
+
+.tabcontent {
+  display: none;
+  padding: 2px 2px;
+  border: 1px solid solid gray;
+  border-top: none;
+}
+
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.tab-control {
+background-color: #ddd;
+}
+
+.tab button,
+.tab-control {
+background-color: #f1f1f1;
+/* float: left; */
+display: inline-block;
+border:solid 1px solid gray;
+outline: none;
+cursor: pointer;
+padding: 0px 12px;
+transition: 0.3s;
+font-size: 60px;
+}
+
+.tablinks {border-radius: 48px;}
+/* Radius of Curavture at edge*/
+
+</Style>
+
+
 <form><input type="button" value="Main Page" onclick="location.href = 'http://192.168.1.177:8000';"  style="float: right;height:66; width:250; background-color: rgb(49,87,119); color: RGB(255,252,148); font-size:32pt; font-weight:bold"></form><font face='Helvetica' style="color: rgb(239,207,103); font-size: 16pt;">Menu By MyShopPOS <br><a href="http://www.myshoppos.tk"  target="_blank" rel="noopener noreferrer" style="color: inherit;text-decoration:none; cursor: pointer; cursor: hand;">http://www.myshoppos.tk</a>
-<body style="background-color: rgb(49,87,119); color: RGB(255,252,148); "><br> <font style="font-size: 14pt;">2021/10/26 21:47:49
+<body style="background-color: rgb(49,87,119); color: RGB(255,252,148); "><br> <font style="font-size: 14pt;">2021/10/26 23:02:53
 <title>Triple A Pizzeria Menu</title>
-<table border=0 style='border-width:0; width:100%; cellspacing='0' cellpadding='0'>
+<body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table border=0 style='border-width:0; width:100%; cellspacing='0' cellpadding='0'>
 <colgroup><col span='1'><col span='1' style='width: 60%;'><col span='1' style='width: 17%;'></colgroup>
 <tr>
 <td style='border-style: none; border-width: medium'></td>
@@ -42,11 +218,35 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 </tr>
 </table><br>
 
-<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%;color:rgb(239,207,103);"><tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Appetizers<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+    <div class="tab-navigation">
+  <button style="height:0px; background-color:transparent; font-size:0pt" id="ALeft" class="tab-control arrow-left" onclick="moveNavigation(-.8*screen.width)"></button>
 
+  <button style="height:0px; background-color:transparent; font-size:0pt" id="ARight"  class="tab-control arrow-right" onclick="moveNavigation(.8*screen.width)"></button>
 
+<div class="tab">
+<button class="tablinks" onclick="return openCity(event, 'Appetizers')">Appetizers</button>
+<button class="tablinks" onclick="return openCity(event, 'Nachos')">Nachos</button>
+<button class="tablinks" onclick="return openCity(event, 'Calzone')">Calzone</button>
+<button class="tablinks" onclick="return openCity(event, 'Salads')">Salads</button>
+<button class="tablinks" onclick="return openCity(event, 'Poutines')">Poutines</button>
+<button class="tablinks" onclick="return openCity(event, 'Pizza')">Pizza</button>
+<button class="tablinks" onclick="return openCity(event, 'Pizza Toppings')">Pizza Toppings</button>
+<button class="tablinks" onclick="return openCity(event, 'Garlic Finger')">Garlic Finger</button>
+<button class="tablinks" onclick="return openCity(event, 'Chicken')">Chicken</button>
+<button class="tablinks" onclick="return openCity(event, 'Sandwiches')">Sandwiches</button>
+<button class="tablinks" onclick="return openCity(event, 'Subs Or Pita Wraps')">Subs Or Pita Wraps</button>
+<button class="tablinks" onclick="return openCity(event, 'Wraps')">Wraps</button>
+<button class="tablinks" onclick="return openCity(event, 'Donair')">Donair</button>
+<button class="tablinks" onclick="return openCity(event, 'Burgers')">Burgers</button>
+<button class="tablinks" onclick="return openCity(event, 'Triple A Specials')">Triple A Specials</button>
+<button class="tablinks" onclick="return openCity(event, 'Triple A Party Package')">Triple A Party Package</button>
+<button class="tablinks" onclick="return openCity(event, 'Seafood')">Seafood</button>
+<button class="tablinks" onclick="return openCity(event, 'Restaurant Sauces')">Restaurant Sauces</button>
+</div>
+
+<div id="Appetizers" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Fries Small<br><font face="Helvetica" style="font-size-adjust: none;text-size-adjust: none;-webkit-text-size-adjust: none;font-size:28px">Tasty Fries
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>4.49 CAD</p></td>
@@ -148,11 +348,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>14.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Nachos<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Nachos" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Nachos Supreme Small<br><font face="Helvetica" style="font-size-adjust: none;text-size-adjust: none;-webkit-text-size-adjust: none;font-size:28px">Nacho Chips with melted Mozzarella and Cheddar Cheese topped with Onions, Green Peppers, Tomatoes, and Olives. Served with Salsa and Sour Cream.
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>9.99 CAD</p></td>
@@ -188,11 +389,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>17.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Calzone<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Calzone" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Calzone Works (Pizza)
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>13.99 CAD</p></td>
@@ -240,11 +442,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>13.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Salads<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Salads" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Caesar Salad Small<br><font face="Helvetica" style="font-size-adjust: none;text-size-adjust: none;-webkit-text-size-adjust: none;font-size:28px">Fresh Romaine Lettuce tossed in our creamy Caesar Dressing, topped with Crunchy Croutons, Bacon Bits, and Freshly Grated Parmesan Cheese.
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>6.49 CAD</p></td>
@@ -304,11 +507,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>10.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Poutines<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Poutines" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td "col width=70%" Style="border-bottom-style: none; border-bottom-width: medium;border-right-style: none; border-right-width: medium"><img src="Menu Photos\Regular Poutine Small.jpg"   alt="picon.png" width=100% ></br><a href="Menu Photos\Regular Poutine Small.jpg" style="color: inherit;text-decoration:none; cursor: pointer; cursor: hand;"></td></tr>
 <tr><td " Style="border-top-style: none; border-top-width: medium;border-right-style: none; border-right-width: medium"><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Regular Poutine Small&nbsp &nbsp <a href="Menu Photos\Regular Poutine Small.jpg"  onClick="return popup(this, 'mypic')" ><img src="picon.png" alt=""  style="width:30px;height:30px;" /></a><br><font face="Helvetica" style="font-size-adjust: none;text-size-adjust: none;-webkit-text-size-adjust: none;font-size:28px">Crispy Fries, Mozzarella Cheese, Homemade Gravy
 </br></br></td>
@@ -411,11 +615,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>2.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Pizza<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Pizza" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Cheese Pizza Small
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>8.99 CAD</p></td>
@@ -781,11 +986,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>10.00 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Pizza Toppings<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Pizza Toppings" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Regular Toppings Small
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
@@ -833,11 +1039,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Garlic Finger<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Garlic Finger" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Garlic Fingers Small
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
@@ -909,11 +1116,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Chicken<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Chicken" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>1 PC Chicken & Fries
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>6.99 CAD</p></td>
@@ -985,11 +1193,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>39.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Sandwiches<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Sandwiches" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Clubhouse & Fries
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>9.49 CAD</p></td>
@@ -1001,11 +1210,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>8.49 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Subs Or Pita Wraps<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Subs Or Pita Wraps" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Small Pizza Sub (Oven Toasted)
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>8.49 CAD</p></td>
@@ -1077,11 +1287,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>10.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Wraps<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Wraps" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Small T-Wraps
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>8.99 CAD</p></td>
@@ -1177,11 +1388,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>10.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Donair<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Donair" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Donair Small
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>6.99 CAD</p></td>
@@ -1223,11 +1435,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>11.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Burgers<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Burgers" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Hamburger
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>5.99 CAD</p></td>
@@ -1311,11 +1524,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>9.49 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Triple A Specials<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Triple A Specials" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Special 1
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
@@ -1357,11 +1571,12 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Triple A Party Package<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Triple A Party Package" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Party Package 1
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
@@ -1373,21 +1588,23 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.00 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Seafood<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Seafood" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Clam Strips & Fries<br><font face="Helvetica" style="font-size-adjust: none;text-size-adjust: none;-webkit-text-size-adjust: none;font-size:28px">Served with Tartar sauce.
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>10.99 CAD</p></td>
 </tr>
 
-<tr>
-<td colspan ='5'; "col width=100%"<b><p style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"><br></br>Restaurant Sauces<font style="color: RGB(255,252,148);font-family:helvetica;font-size:20px;font-weight:bold;"><br></br><font style="color: RGB(255,252,148);font-family:helvetica;font-size:75px;font-weight:bold;"></b></td>
-</tr>
+</table>
+</div>
 
-
+<div id="Restaurant Sauces" class="tabcontent">
+<table>
+<head><style>table, th, td {border: 0px solid rgb(239,207,103); border-collapse:collapse;}</style></head><body style="background-color: rgb(49,87,119); color: rgb(239,207,103); "><table style="width:100%">
 <tr><td><font face="Helvetica" style="font-size:45px"><p style='font-family:helvetica;font-size:45px;'>Small Homemade Garlic Sauce (1 Cup)
 </br></br></td>
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>1.49 CAD</p></td>
@@ -1555,4 +1772,5 @@ if (newwindow && !newwindow.closed) { newwindow.close(); }
 <td "col width=30%" valign="top" style="text-align:right;vertical-align:top"><p style='font-family:helvetica;font-size:45px;'>2.99 CAD</p></td>
 </tr>
 
-</table></body>
+</table>
+</div>
